@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import LoginManager, login_user, UserMixin, logout_user, login_required, current_user
 from sqlalchemy import case,desc
 from form import LoginForm, RegisterForm, Add_bookForm
-from API2 import Book, Pagination, Reading
+from book_reader import Book, Pagination, Reading
 import os
 from werkzeug.utils import secure_filename
 app = Flask(__name__)
@@ -17,7 +17,8 @@ db = SQLAlchemy(app)
 login_manager = LoginManager(app)
 login_manager.init_app(app)
 
-app.secret_key = 'hej'
+app.secret_key = os.urandom(24)
+
 
 @login_manager.user_loader
 def load_user(user_id):
