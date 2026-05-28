@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}Lista książek{% endblock %}
+
+{% block content %}
+    <h1>Booklist</h1>
+
+ <form method="POST">
+ <input type="text" placeholder="Enter book title" name="book_title">
+ </form>
+
+
+
+   <div class="row">
+{% for post in posts %}
+
+          <div class="col-md-6 col-lg-4">
+               <div class="card mb-3 p-2"  >
+        <h3>{{ post.title }}</h3>
+
+                             {% if post.cover %}
+            <img src="{{ url_for('static', filename='covers/' + post.cover) }}"
+                 class="img-fluid mb-2"
+                 style="max-height:500px; object-fit:cover;">
+        {% endif %}
+        <p class="text-muted"> Author: {{ post.author }}</p>
+        <p class="text-muted" >Rating:     {{ post.avg_rating() }}  </p>
+        <form method="POST" >
+            <input type="hidden" name="book_id" value="{{ post.id }}">
+            <button type="submit" class="btn btn-dark mt-2">
+               Add to you library
+            </button>
+        </form>
+          <form method="POST" >
+               <input type="hidden" name="id" value="{{ post.id }}">
+                 Rate this book:
+    {% for i in range(1,6) %}
+
+        <button type="submit" name="value" value="{{ i }}" class="btn btn-dark mt-2">
+                            {{ i }}
+                        </button>
+
+                    {% endfor %}
+                </form>
+                    </div>
+                                      </div>
+                    {% endfor %}
+                                </div>
+{% endblock %}

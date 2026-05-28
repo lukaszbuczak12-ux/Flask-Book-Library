@@ -1,0 +1,36 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5 text-center">
+
+    <h1 class="mb-4">📚 Book Reading App</h1>
+    <p class="lead">Your library, reader, and rating system in one place</p>
+
+    <div class="mt-4 d-flex justify-content-center gap-3 flex-wrap">
+        <a href="/books" class="btn btn-primary btn-lg">📖 Browse books</a>
+        <a href="/biblioteka" class="btn btn-success btn-lg">📚 My library</a>
+        <a href="/add_book" class="btn btn-dark btn-lg">➕ Add book</a>
+    </div>
+
+    <hr class="my-5">
+
+    <div class="row">
+        <div class="col-md-4">
+            <h5>✅ Read online</h5>
+            <p>Dividing books into pages and remembering progress</p>
+        </div>
+        <div class="col-md-4">
+            <h5>⭐ Ratings</h5>
+            <p>Rate books and see average opinion</p>
+        </div>
+        <div class="col-md-4">
+            <h5>📚 Your library</h5>
+            <p>Save progress and return anytime</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

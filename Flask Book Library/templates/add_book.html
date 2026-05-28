@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+
+<form method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="mb-3">
+        {{ form.Title.label(class="form-label") }}
+        {{ form.Title(class="form-control w-25") }}
+    </div>
+    <div class="mb-3">
+        {{ form.Author.label(class="form-label") }}
+        {{ form.Author(class="form-control w-25") }}
+    </div>
+    <div class="mb-3">
+        {{ form.Text.label(class="form-label") }}
+        {{ form.Text(class="form-control w-25") }}
+    </div>
+    {{ form.submit(class="btn btn-primary") }}
+
+    <div>
+          {{ form.Cover.label(class="form-label") }}
+           {{ form.Cover(class="form-control w-25") }}
+    </div>
+</form>
+
+{%if title and author%}
+<h>Wynik:</h>
+<p> {{title}} {{author}}</p>
+{% endif %}
+<a class="nav-item nav-link" href="/posts">Posts</a> <a class="nav-item nav-link" href="/posts_json">Posts in json</a>
+
+    {% endblock %}

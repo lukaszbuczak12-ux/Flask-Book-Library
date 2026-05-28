@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+
+    {% if current_user.is_authenticated %}
+
+
+            <body>
+        <div class="d-flex gap-2 mb-3">
+    <form method="POST">
+        <input type="text" class="form-control" placeholder="Add book by id" name="book_id">
+    </form>
+
+    <form method="POST">
+        <input type="text" class="form-control" placeholder="Search for book" name="book_title">
+    </form>
+
+    <form method="POST">
+        <button type="submit" name="by_pages" class="btn btn-primary">Sort by pages</button>
+    </form>
+</div>
+            {% if not exist %}
+            <p> book id doesnt exists</p>
+            {% endif %}
+
+                 <div class="row">
+                        {% for ub in books %}
+
+
+
+
+                            <div class="col-md-6 col-lg-4">
+                                <div class="card mb-3 p-2">
+
+                                    <h1>{{ ub.book.title }}</h1>
+
+
+                                                     {% if ub.book.cover %}
+                                    <img src="{{ url_for('static', filename='covers/' + ub.book.cover) }}"
+                                         class="img-fluid mb-2"
+                                         style="max-height:500px; object-fit:cover;">
+                                {% endif %}
+
+                                    <p class="text-muted">Author: {{ ub.book.author }}</p>
+                                    <p>Current page: {{ ub.page + 1 }}</p>
+
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="read_book" value="{{ ub.book.id }}">
+                                        <button type="submit" class="btn btn-warning">Read Book</button>
+                                    </form>
+
+                                    <form method="POST" style="display:inline;">
+                                        <input type="hidden" name="book_id_d" value="{{ ub.book.id }}">
+                                        <button type="submit" class="text-danger">Delete book</button>
+                                    </form>
+                                  </div>
+                            </div>
+                        {% endfor %}
+                        </div>
+
+
+
+
+                            </body>
+
+
+    {% else %}
+
+            <body> To access you must log in first     </body>
+    {% endif %}
+{% endblock %}
